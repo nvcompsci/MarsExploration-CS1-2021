@@ -1,4 +1,5 @@
 float[][] terrain = new float[200][200];
+Rover rover;
 
 public void setup() {
   size(600,600);
@@ -20,10 +21,19 @@ public void draw() {
       drawPoint(terrain[i][j],j*3,i*3);
     }
   }
+  
+  if (rover != null) {
+    rover.move();
+    rover.draw();
+  }
 }
 
 public void drawPoint(float point, int x, int y) {
   float grayscale = map(point, 0, 1, 0, 255); 
   fill(grayscale,0,100);
    square(x, y, 3);
+}
+
+public void mouseClicked() {
+  rover = new Rover(mouseX, mouseY); 
 }
