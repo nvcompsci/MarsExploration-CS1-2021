@@ -8,10 +8,24 @@ public class Rover {
      this.y = y;
   }
   
-  public void move() {
-    PVector direction = pickDirection();
+  public void move(float[][] world) {
+    PVector direction = pickDirection(getNearby(world));
     x += direction.x * SPEED;
     y += direction.y * SPEED;
+  }
+  
+  public float[][] getNearby(float[][] world) {
+    //location of Rover in the matrix
+    int r = y / 3;
+    int c = x / 3;
+    
+    float[][] nearby = new float[3][3];
+    for (int i = 0; i < nearby.length; i++) {
+      for (int j = 0; j < nearby[0].length; j++) {
+        nearby[i][j] = world[r+i-1][c+j-1];
+      }
+    }
+    return nearby;
   }
   
   private PVector pickDirection(float[][] nearby) {

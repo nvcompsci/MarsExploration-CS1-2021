@@ -23,7 +23,7 @@ public void draw() {
   }
   
   if (rover != null) {
-    rover.move();
+    rover.move(terrain);
     rover.draw();
   }
 }
